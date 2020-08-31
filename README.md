@@ -1,0 +1,1 @@
+# Hackernewsbot Plugin
