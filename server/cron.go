@@ -12,7 +12,8 @@ import (
 )
 
 func (p *Plugin) InitCRON() *cron.Cron {
-	c := cron.New()
+	loc, _ := time.LoadLocation("Asia/Kolkata")
+	c := cron.NewWithLocation(loc)
 	c.AddFunc("@midnight", p.SendDailyTechUpdates)
 	c.AddFunc("@every 240m", p.SendTechUpdate)
 	return c
