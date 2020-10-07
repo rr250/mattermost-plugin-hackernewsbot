@@ -3,8 +3,8 @@ package main
 import (
 	"sync"
 
+	"github.com/mattermost/mattermost-plugin-api/cluster"
 	"github.com/mattermost/mattermost-server/v5/plugin"
-	"github.com/robfig/cron"
 )
 
 type Plugin struct {
@@ -12,5 +12,6 @@ type Plugin struct {
 	botUserID         string
 	configurationLock sync.RWMutex
 	configuration     *configuration
-	cron              *cron.Cron
+	backgroundJob1    *cluster.Job
+	backgroundJob2    *cluster.Job
 }

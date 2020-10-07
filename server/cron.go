@@ -8,16 +8,15 @@ import (
 	"time"
 
 	"github.com/mattermost/mattermost-server/v5/model"
-	"github.com/robfig/cron"
 )
 
-func (p *Plugin) InitCRON() *cron.Cron {
-	loc, _ := time.LoadLocation("Asia/Kolkata")
-	c := cron.NewWithLocation(loc)
-	c.AddFunc("@midnight", p.SendDailyTechUpdates)
-	c.AddFunc("@every 240m", p.SendTechUpdate)
-	return c
-}
+// func (p *Plugin) InitCRON() *cron.Cron {
+// 	loc, _ := time.LoadLocation("Asia/Kolkata")
+// 	c := cron.NewWithLocation(loc)
+// 	c.AddFunc("@midnight", p.SendDailyTechUpdates)
+// 	c.AddFunc("@every 240m", p.SendTechUpdate)
+// 	return c
+// }
 
 func (p *Plugin) SendDailyTechUpdates() {
 	client := &http.Client{}
@@ -112,9 +111,9 @@ func (p *Plugin) SendDailyTechUpdates() {
 				"attachments": attachments,
 			},
 		}
-		_, err = p.API.CreatePost(postModel)
-		if err != nil {
-			p.API.LogError(err.Error())
+		_, err2 := p.API.CreatePost(postModel)
+		if err2 != nil {
+			p.API.LogError(err2.Error())
 		}
 	}
 }
@@ -209,9 +208,9 @@ func (p *Plugin) SendTechUpdate() {
 				"attachments": attachments,
 			},
 		}
-		_, err = p.API.CreatePost(postModel)
-		if err != nil {
-			p.API.LogError(err.Error())
+		_, err2 := p.API.CreatePost(postModel)
+		if err2 != nil {
+			p.API.LogError(err2.Error())
 		}
 	}
 }
